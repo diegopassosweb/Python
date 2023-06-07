@@ -12,6 +12,7 @@ class Pet:
         
 class Cat(Pet):
     def __init__(self, name, age, color):
+        super().__init__(name, age)
         self.color = color
     
     def speak(self):
@@ -30,8 +31,8 @@ class Fish(Pet):
 
 p = Pet("Tim", 19)
 p.show()
-c = Cat("Bil", 34)
-c.speak()
+# c = Cat("Bil", 34)
+# c.speak()
 d = Dog("Jill", 25)
 d.speak()
 f = Fish("Bubbles", 10)
