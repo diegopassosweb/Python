@@ -60,7 +60,7 @@ app_ = Label(frame_baixo, text=' ', width=190, pady=1, relief="flat", padx=2, an
 app_.place(x=30, y=123)
 
 #linha 0
-b_0 = Label(frame_baixo, text=' ', width=190, pady=1, relief="flat", padx=2, anchor="center", font=('Ivy 1 bold'), bg=co0, fg=co0)
+b_0 = Label(frame_baixo, text='', font=('Ivy 20 bold'), overrelief=RIDGE, bg=fundo, fg=co0)
 b_0.place(x=30, y=63)
 
 
