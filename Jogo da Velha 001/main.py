@@ -2,8 +2,9 @@ import tkinter
 from tkinter import *
 from tkinter import ttk
 
+# cores ---------------------------------------
 co0 = "#FFFFFF"  # branca / white
-co1 = "#333333"  # branca
+co1 = "#333333"  # preta pesado / dark black
 co2 = "#fcc058"  # laranja / orange
 co3 = "#38576b"  # valor / value
 co4 = "#3297a8"   # azul / blue
@@ -14,12 +15,14 @@ co8 = co4   # + verde
 co10 ="#fcfbf7"
 fundo = "#3b3b3b" # preta / black
 
+# criando janela principal
 janela = Tk()
 janela.title('')
 janela.geometry('260x370')
 janela.configure(bg=fundo)
 
-#dividindo a janela em 2 frames
+
+# Dividindo a janela em 2 frames ---------------------------------------
 
 frame_cima = Frame(janela, width=240, height=100, bg=co1, relief="raised")
 frame_cima.grid(row=0, column=0, sticky=NW, padx=10, pady=10)
@@ -27,37 +30,46 @@ frame_cima.grid(row=0, column=0, sticky=NW, padx=10, pady=10)
 frame_baixo = Frame(janela, width=240, height=300, bg=fundo, relief="flat")
 frame_baixo.grid(row=1, column=0, sticky=NW)
 
-# configurando o frame cima
-app_x = Label(frame_cima, text='X', height=1, relief="flat", anchor="center", font=('Ivy 40 bold'), bg=co1, fg=co7)
+
+# Configurando o frame cima ---------------------------------------
+app_x = Label(frame_cima, text='X', height=1, relief='flat', anchor='center', font=('Ivy 40 bold'), bg=co1, fg=co7 )
 app_x.place(x=25, y=10)
-app_x = Label(frame_cima, text='Jogador 1', height=1, relief="flat", anchor="center", font=('Ivy 7 bold'), bg=co1, fg=co7 )
+app_x = Label(frame_cima, text='Jogador 1', height=1, relief='flat', anchor='center', font=('Ivy 7 bold'), bg=co1, fg=co0 )
 app_x.place(x=17, y=70)
-app_x_pontos = Label(frame_cima, text='0', height=1, relief="flat", anchor="center", font=('Ivy 30 bold'), bg=co1, fg=co0)
+app_x_pontos = Label(frame_cima, text='0', height=1, relief='flat', anchor='center', font=('Ivy 30 bold'), bg=co1, fg=co0 )
 app_x_pontos.place(x=80, y=20)
 
-app_separador = Label(frame_cima, text=':', height=1, relief="flat", anchor="center", font=('Ivy 30 bold'), bg=co1, fg=co0)
+app_separador = Label(frame_cima, text=':', height=1, relief='flat', anchor='center', font=('Ivy 30 bold'), bg=co1, fg=co0 )
 app_separador.place(x=110, y=20)
 
-app_o = Label(frame_cima, text='O', height=1, relief="flat", anchor="center", font=('Ivy 40 bold'), bg=co1, fg=co4)
+app_o = Label(frame_cima, text='O', height=1, relief='flat', anchor='center', font=('Ivy 40 bold'), bg=co1, fg=co4 )
 app_o.place(x=170, y=10)
-app_o = Label(frame_cima, text='Jogador 2', height=1, relief="flat", anchor="center", font=('Ivy 7 bold'), bg=co1, fg=co7)
+app_o = Label(frame_cima, text='Jogador 2', height=1, relief='flat', anchor='center', font=('Ivy 7 bold'), bg=co1, fg=co0 )
 app_o.place(x=165, y=70)
-app_o_pontos = Label(frame_cima, text='0', height=1, relief="flat", anchor="center", font=('Ivy 30 bold'), bg=co1, fg=co0)
+app_o_pontos = Label(frame_cima, text='0', height=1, relief='flat', anchor='center', font=('Ivy 30 bold'), bg=co1, fg=co0 )
 app_o_pontos.place(x=130, y=20)
 
-# logica app
+# Configurando o frame baixo ---------------------------------------
+
+
+
+
+
+# Criando logica do app ---------------------------------------
 
 jogador_1 = "X"
 jogador_2 = "O"
 
-tabela = [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']]
-
-jogando = 'X'
-joga = ''
-contador = 0
-
 score_1 = 0
 score_2 = 0
+
+tabela = [['1','2','3'] , ['4','5','6'] , ['7','8','9']]
+
+jogando = 'X'
+joga =''
+contador = 0
+contador_de_rodada = 0
+
 
 def iniciar_jogo():
     b_jogar.place(x=800, y=350)
@@ -350,81 +362,147 @@ def iniciar_jogo():
             # Empate 
             if contador>=9:
                 vencedor('Foi empate') 
-            if b_8['text'] == '':
-                
-                if jogando == 'X':
-                    cor = co7
-                if jogando == 'O':
-                    cor = co8
-                
-                b_8['fg'] = cor
-                b_8['text'] = jogando
-                tabela[[0][0]] = jogando
-                
-                if jogando == 'X':
-                    jogando = '0'
-                    joga = 'Jogador 1'
-                    
-                else:
-                    jogando = 'X'
-                    joga = 'Jogador 2'
-                    
-                contador += 1
-                
-                if contador >= 5:
-                    if tabela[0][0] == tabela[0][1] == tabela[0][2]!="":
-                        vencedor(jogando)
-                    elif tabela[1][0] == tabela[1][1] == tabela[1][2]!="":
-                        vencedor(jogando)
-                    elif tabela[2][0] == tabela[2][1] == tabela[2][2]!="":
-                        vencedor(jogando)
-                        
-                    if tabela[0][0] == tabela[1][0] == tabela[2][0]!="":
-                        vencedor(jogando)
-                    elif tabela[0][1] == tabela[1][1] == tabela[2][1]!="":
-                        vencedor(jogando)
-                    elif tabela[0][2] == tabela[1][2] == tabela[2][2]!="":
-                        vencedor(jogando)
-                        
-                        
-                    if tabela[0][0] == tabela[1][1] == tabela[2][2]!="":
-                        vencedor(jogando)
-                    elif tabela[0][2] == tabela[1][1] == tabela[2][0]!="":
-                        vencedor(jogando)
-                        
-                    if contador >= 9:
-                        vencedor('empate!')
-    
-    
-    def vencedor(i):
-        global contador_de_rodadas
-        global contador
-        global jogando
-        global tabela
-        
-        b_0['text'] = ''
-        b_1['text'] = ''
-        b_2['text'] = ''
-        b_3['text'] = ''
-        b_4['text'] = ''
-        b_5['text'] = ''
-        b_6['text'] = ''
-        b_7['text'] = ''
-        b_8['text'] = ''
-    
-    def terminar():
-        pass
 
-        # linhas verticais
-    app_ = Label(frame_baixo, text='', height=23, relief="flat", pady=5, anchor="center", font=('Ivy 5 bold'), bg=co0, fg=co0)
+
+    # pra decidir o vencedor
+    def vencedor(i):
+        global tabela
+        global score_1
+        global score_2
+        global contador_de_rodada
+        global contador
+
+        # bloqueando os botoes
+        b_0['state']='disable'
+        b_1['state']='disable'
+        b_2['state']='disable'
+        b_3['state']='disable'
+        b_4['state']='disable'
+        b_5['state']='disable'
+        b_6['state']='disable'
+        b_7['state']='disable'
+        b_8['state']='disable'
+
+        app_vencedor = Label(frame_baixo, text='', width=17, relief='flat', anchor='center', font=('Ivy 13 bold'), bg=co1, fg=co2 )
+        app_vencedor.place(x=40, y=220)
+
+        if i =='X':
+            score_2+=1
+            app_vencedor['text'] = 'Joagador 2 venceu'
+            app_o_pontos['text'] =score_2
+
+        if i =='O':
+            score_1+=1
+            app_vencedor['text'] = 'Joagador 1 venceu'
+            app_x_pontos['text'] =score_1
+
+        if i=='Foi empate':
+            app_vencedor['text'] = 'Foi um empate'
+
+        def start():
+            # limpando os botoes
+            b_0['text']=''
+            b_1['text']=''
+            b_2['text']=''
+            b_3['text']=''
+            b_4['text']=''
+            b_5['text']=''
+            b_6['text']=''
+            b_7['text']=''
+            b_8['text']=''
+
+            b_0['state']='normal'
+            b_1['state']='normal'
+            b_2['state']='normal'
+            b_3['state']='normal'
+            b_4['state']='normal'
+            b_5['state']='normal'
+            b_6['state']='normal'
+            b_7['state']='normal'
+            b_8['state']='normal'
+
+            app_vencedor.destroy()
+            b_jogar.destroy()
+
+        # Botao jogar
+        b_jogar = Button(frame_baixo, command=start, text='Proxima rodada', height=1,  font=('Ivy 10 bold'), overrelief=RIDGE, relief='raised', bg=fundo, fg=co0 )
+        b_jogar.place(x=70, y=197)
+
+
+        def jogo_acabou():
+            b_jogar.destroy()
+            app_vencedor.destroy()
+
+            terminar()
+
+        if contador_de_rodada>=5:
+            jogo_acabou()
+        else:
+            contador_de_rodada+=1
+            # reiniciando a tabela
+            tabela = [['1','2','3'] , ['4','5','6'] , ['7','8','9']]
+            contador = 0
+
+
+
+    # pra terminar o jogo atual
+    def terminar():
+        global tabela
+        global contador_de_rodada
+        global score_1
+        global score_2
+        global contador
+
+        tabela = [['1','2','3'] , ['4','5','6'] , ['7','8','9']]
+        contador_de_rodada = 0
+        score_1 = 0
+        score_2 = 0
+        contador = 0
+
+        # bloqueando os botoes
+        b_0['state']='disable'
+        b_1['state']='disable'
+        b_2['state']='disable'
+        b_3['state']='disable'
+        b_4['state']='disable'
+        b_5['state']='disable'
+        b_6['state']='disable'
+        b_7['state']='disable'
+        b_8['state']='disable'
+
+        app_fim = Label(frame_baixo, text='Jogo Acabou', width=17, relief='flat', anchor='center', font=('Ivy 13 bold'), bg=co1, fg=co2 )
+        app_fim.place(x=25, y=90)
+
+        # jogar de novo
+
+        def jogar_denovo():
+            app_x_pontos['text'] = '0'
+            app_o_pontos['text'] = '0'
+            app_fim.destroy()
+            b_jogar.destroy()
+
+            # chamando a funcao iniciar o jogo
+            iniciar_jogo()
+
+        # Botao jogar denovo
+        b_jogar = Button(frame_baixo, command=jogar_denovo, text='Jogar de novo', height=1,  font=('Ivy 10 bold'), overrelief=RIDGE, relief='raised', bg=fundo, fg=co0 )
+        b_jogar.place(x=80, y=197)
+
+
+
+
+
+
+    # linhas verticais 
+    app_ = Label(frame_baixo, text='', height=23, relief='flat', pady=5, anchor='center', font=('Ivy 5 bold'), bg=co0, fg=co7 )
     app_.place(x=90, y=15)
-    app_ = Label(frame_baixo, text='', height=23, relief="flat", pady=5, anchor="center", font=('Ivy 5 bold'), bg=co0, fg=co0)
+    app_ = Label(frame_baixo, text='', height=23, relief='flat', pady=5, anchor='center', font=('Ivy 5 bold'), bg=co0, fg=co7 )
     app_.place(x=157, y=15)
 
-    #linhas horizontais
-    app_ = Label(frame_baixo, text='', width=46, pady=1, relief="flat", padx=2, anchor="center", font=('Ivy 5 bold'), bg=co0, fg=co0)
+    # linhas horizontais 
+    app_ = Label(frame_baixo, text='', width=46, relief='flat', padx=2, pady=1, anchor='center', font=('Ivy 5 bold'), bg=co0, fg=co7 )
     app_.place(x=30, y=63)
-    app_ = Label(frame_baixo, text=' ', width=46, pady=1, relief="flat", padx=2, anchor="center", font=('Ivy 5 bold'), bg=co0, fg=co0)
+    app_ = Label(frame_baixo, text='', width=46, relief='flat', padx=2, pady=1, anchor='center', font=('Ivy 5 bold'), bg=co0, fg=co7 )
     app_.place(x=30, y=127)
 
     # linha 0
@@ -452,14 +530,9 @@ def iniciar_jogo():
     b_8 = Button(frame_baixo,command=lambda:controlar('9'), text='', width=3, height=1,  font=('Ivy 20 bold'), overrelief=RIDGE, relief='flat', bg=fundo, fg=co7 )
     b_8.place(x=163, y=135)
 
-# button jogar
-b_jogar = Button(frame_baixo, command=iniciar_jogo, text='Jogar', width=10, height=1, font=('Ivy 10 bold'), overrelief=RIDGE, relief='raised', bg=fundo, fg=co0)
-b_jogar.place(x=85, y=210)
-
-
-
-
-
+# Botao jogar
+b_jogar = Button(frame_baixo, command=iniciar_jogo, text='Jogar', width=10, height=1,  font=('Ivy 10 bold'), overrelief=RIDGE, relief='raised', bg=fundo, fg=co0 )
+b_jogar.place(x=85, y=197)
 
 
 janela.mainloop()
